@@ -48,7 +48,7 @@ class GridSegmenter(nn.Module):
         pW = (W // gW) + (W % gW != 0)
         mask_small = torch.arange(gH * gW, device=x.device).view(1, 1, gH, gH)
         mask_big = F.interpolate(mask_small.float(), scale_factor=(pH,pW)).round().long()
-        return mask_big[0,:,:H,:W] # (H,W)
+        return mask_big[0,0,:H,:W] # (H,W)
 
 
 class VisionMuS(nn.Module):
